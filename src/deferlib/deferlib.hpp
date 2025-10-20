@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef DEFERLIB_DEFERRER_NAME
+#define DEFERLIB_DEFERRER_NAME deferrer
+#endif
+
 #include <functional>
 #include <stack>
 
@@ -39,8 +43,8 @@ public:
  * @brief Defers the given call to the end of the scope
  * @warning Prerequisite : A `Deferrer` previously created in the scope with the name `deferrer`.
  */
-#define defer(x) deferrer.defer_call([&](){ x ; })
+#define defer(x) DEFERLIB_DEFERRER_NAME.defer_call([&](){ x ; })
 
 /// @brief Creates a new deferrer with the name `deferrer`
-#define defer_init Deferrer deferrer
+#define defer_init Deferrer DEFERLIB_DEFERRER_NAME
 

@@ -86,6 +86,9 @@ Exiting parent
 
 ## Notes and warnings
 - `defer_init` creates a new variable called `deferrer` in your scope. Watch out for name conflicts.
+  - If the name conflicts with your current code, you can :
+    - Use the non-macro version of the library (create a `Deferrer` and call its `defer_call()` method with a lambda)
+    - Change the name of the deferrer globally by setting the macro `DEFERLIB_DEFERRER_NAME` to another name before importing `deferlib`.
 - Each deferred call with `defer()` is wrapped in a lambda capturing the current scope under the hood.
 - You can omit the final semicolon in a `defer()` call.
 - Each `defer()` call gets executed bottom-to-top ; as such, the last `defer()` call of the scope will be the first to be executed (LIFO).
