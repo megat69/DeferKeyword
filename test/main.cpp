@@ -37,6 +37,13 @@ int main() {
         print("");
     }
 
+    // In another scope
+    {
+        defer_init;
+        defer(print("From another scope !\n"));
+    }
+    defer(print("The original deferrer wasn't touched by the scope deferrer."));
+
     // Tests where the deferrer is heap-allocated
     heapAllocatedDeferrerTests();
 
