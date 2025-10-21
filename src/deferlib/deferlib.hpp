@@ -45,6 +45,12 @@ public:
  */
 #define defer(x) DEFERLIB_DEFERRER_NAME.defer_call([&](){ x ; })
 
+/**
+ * @brief Defers the given call to the given deferrer.
+ * @param deferrer The instance of a previously created Deferrer.
+ */
+#define defer_to(deferrer, x) deferrer.defer_call([&](){ x ; })
+
 /// @brief Creates a new deferrer with the name `deferrer`
 #define defer_init Deferrer DEFERLIB_DEFERRER_NAME
 

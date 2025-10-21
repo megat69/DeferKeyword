@@ -16,6 +16,14 @@ void heapAllocatedDeferrerTests() {
     print("After deletion\n");
 }
 
+void secondDeferrerTests() {
+    Deferrer deferrer1;
+    Deferrer deferrer2;
+    defer_to(deferrer1, print("This gets printed last\n"));
+    defer_to(deferrer1, print("From deferrer 1 !"));
+    defer_to(deferrer2, print("From deferrer 2 !"));
+}
+
 
 int main() {
     // Initializes the deferrer
@@ -46,6 +54,9 @@ int main() {
 
     // Tests where the deferrer is heap-allocated
     heapAllocatedDeferrerTests();
+
+    // Second deferrer
+    secondDeferrerTests();
 
     return 0;
 }
