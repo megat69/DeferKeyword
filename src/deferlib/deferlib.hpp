@@ -8,12 +8,12 @@
 #include <stack>
 
 /// @brief The function type expected by the deferrer : a function with no return value nor parameters.
-using deffered_call_t = std::function<void()>;
+using deferred_call_t = std::function<void()>;
 
 /// @class Calls all deferred calls when going out of scope/getting destroyed
 class Deferrer {
     /// @brief A stack of deferred calls, so the last deferred call is the first to be called on destruction
-    std::stack<deffered_call_t> defferredCalls;
+    std::stack<deferred_call_t> deferredCalls;
 
 public:
     Deferrer() = default;
@@ -22,10 +22,10 @@ public:
      * @brief Calls each deferred call before the class is destroyed
      */
     ~Deferrer() {
-        while (!defferredCalls.empty()) {
-            const deffered_call_t& defferredCall = defferredCalls.top();
+        while (!deferredCalls.empty()) {
+            const deferred_call_t& defferredCall = deferredCalls.top();
             defferredCall();
-            defferredCalls.pop();
+            deferredCalls.pop();
         }
     }
 
@@ -33,8 +33,8 @@ public:
      * @brief Makes the given call execute at the end of the scope/when this class is deleted.
      * @param call A function with no parameters nor return value (preferrably a lambda with its scope captured)
      */
-    void defer_call(deffered_call_t call) {
-        defferredCalls.push(call);
+    void defer_call(deferred_call_t call) {
+        deferredCalls.push(call);
     }
 };
 
